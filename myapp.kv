@@ -1,0 +1,150 @@
+<Manager>:
+    LoginScreen:
+        name: "login"
+    HomePage:
+        name: "home_page"
+    ResetPassword:
+        name: "reset_password"
+    Register:
+        name: "register"
+<LoginScreen>:
+    FloatLayout:
+        Image:
+            source: "data/user.png"
+            size_hint: (.4, .4)
+            pos_hint: {"center_x": .5, "center_y": .78}
+        MDLabel:
+            text: "Be Very Welcome!"
+            pos_hint: {"center_x": .5, "center_y": .62}
+            halign: "center"
+            bold: True
+            font_style: "H5"
+        MDLabel:
+            text: "Login to continue."
+            pos_hint: {"center_x": .5, "center_y": .58}
+            halign: "center"
+            font_style: "Caption"
+        MDTextField:
+            hint_text: "Email"
+            size_hint_x: .8
+            pos_hint: {"center_x": .5, "center_y": .5}
+            icon_right: "email"
+            icon_right_color: app.theme_cls.primary_color
+            id: text_email
+        MDTextField:
+            hint_text: "Password"
+            size_hint_x: .8
+            pos_hint: {"center_x": .5, "center_y": .4}
+            icon_right: "lock"
+            password: True
+            icon_right_color: app.theme_cls.primary_color
+            id: text_password
+        MDTextButton:
+            text: "Redefine password."
+            pos_hint: {"center_x": .72, "center_y": .33}
+            on_release: app.root.current = "reset_password"
+        MDFillRoundFlatIconButton:
+            text: "Sign In"
+            font_size: 20
+            elevation: 8
+            theme_text_color: "Custom"
+            text_color: 254/255.0, 254/255.0, 254/255.0, 1
+            pos_hint: {"center_x": .5, "center_y": .23}
+            size_hint_x: .8
+            icon: "login"
+            on_release: root.try_sign_in()
+        MDFillRoundFlatIconButton:
+            text: "Sign Up"
+            font_size: 20
+            elevation: 8
+            theme_text_color: "Custom"
+            text_color: 254/255.0, 254/255.0, 254/255.0, 1
+            md_bg_color: 0.18, 0.53, 1, 1
+            pos_hint: {"center_x": .5, "center_y": .12}
+            size_hint_x: .8
+            icon: "plus"
+            on_release: app.root.current = "register"
+<HomePage>:
+    FloatLayout:
+        orientation: "vertical"
+        MDToolbar:
+            pos_hint: {"top": 1}
+            left_action_items: [["arrow-left", lambda x: root.callback()]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Olá, Mundo!"
+            halign: "center"
+            bold: True
+            font_size: 20
+<ResetPassword>:
+    FloatLayout:
+        orientation: "vertical"
+        MDToolbar:
+            pos_hint: {"top": 1}
+            left_action_items: [["arrow-left", lambda x: root.callback()]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Send E-mail to reset password."
+            font_size: 18
+            bold: True
+            pos_hint: {"center_x": .5, "center_y": .65}
+            halign: "center"
+            id: text_redefined
+        MDTextField:
+            hint_text: "Email"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint_x: .8
+            icon_right: "email"
+            icon_right_color: app.theme_cls.primary_color
+            id: email_confirm
+        MDRaisedButton:
+            text: "Submit"
+            font_size: 17
+            pos_hint: {"center_x": .5, "center_y": .4}
+            md_bg_color: 0.18, 0.53, 1, 1
+            text_color: 1, 1, 1, 1
+            on_release: root.send_email_confirm()
+<Register>:
+    FloatLayout:
+        MDToolbar:
+            pos_hint: {"top": 1}
+            left_action_items: [["arrow-left", lambda x: root.callback()]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Enter your data"
+            font_size: 18
+            bold: True
+            pos_hint: {"center_x": .5, "center_y": .65}
+            halign: "center"
+            id: label_register
+        MDTextField:
+            hint_text: "Email"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint_x: .8
+            icon_right: "email"
+            icon_right_color: app.theme_cls.primary_color
+            id: email_register
+        MDTextField:
+            hint_text: "Password"
+            pos_hint: {"center_x": .5, "center_y": .4}
+            size_hint_x: .8
+            icon_right: "lock"
+            icon_right_color: app.theme_cls.primary_color
+            id: password_register
+        MDTextField:
+            hint_text: "Confirm Password"
+            pos_hint: {"center_x": .5, "center_y": .3}
+            size_hint_x: .8
+            icon_right: "lock"
+            icon_right_color: app.theme_cls.primary_color
+            id: password_register_confirm
+        MDRaisedButton:
+            text: "Submit"
+            font_size: 17
+            pos_hint: {"center_x": .5, "center_y": .17}
+            md_bg_color: 0.18, 0.53, 1, 1
+            text_color: 1, 1, 1, 1
+            on_release: root.validate_info()
